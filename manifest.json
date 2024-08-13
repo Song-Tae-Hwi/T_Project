@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Visit History Visualization",
+  "version": "1.6",
+  "description": "Visualization using Chrome extension",
+  "permissions": ["tabs","activeTab","webRequestBlocking", "<all_urls>"],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*","https://www.google.co.kr/search*"],
+      "js": ["google.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://search.naver.com/search.naver*"],
+      "js": ["naver.js"],
+      "run_at": "document_end"
+    }
+
+  ]
+}
